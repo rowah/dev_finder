@@ -53,7 +53,7 @@ if config_env() == :prod do
 
   config :dev_finder, DevFinderWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
-    check_origin: ["https://#{host}", "https://www.#{host}"]
+    check_origin: ["https://#{host}", "https://www.#{host}"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
