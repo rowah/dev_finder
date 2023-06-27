@@ -4,14 +4,14 @@
 <div class="md:w-[550px] lg:w-[35vw] md:ml-[30%]">
 <div class="flex mx-4 justify-between pt-4">
 <h1 class="font-bold mt-2 text-xl">devfinder</h1>
-<div class="cursor-pointer">
-  <div class="flex text-[#697c9a]">
+<div x-data="{open: false }" class="cursor-pointer">
+  <div @click="open = !open" x-show="!open" class="flex text-[#697c9a] mt-2">
     <h4>DARK</h4>
     <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
   </div>
-  <div class="flex">
+  <div @click="open = !open" x-show="open" class="flex text-white mt-2">
     <h4>LIGHT</h4>
-    <.icon name="hero-sun-path" class="ml-1 w-5 h-5" />
+    <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
   </div>
 </div>
 </div>
@@ -50,24 +50,28 @@
     </div>
   </div>
   <div>
-    <ul class="ml-5 space-y-2 pb-3">
-      <li>
-        <.icon name="hero-map-pin-solid" class="ml-1 w-4 h-4 text-[#697c9a]" />
-        <a href="">Location</a>
-      </li>
-      <li>
-        <.icon name="hero-link-solid" class="ml-1 w-4 h-4 text-[#697c9a]" />
-        <a href="">Link</a>
-      </li>
-      <li>
-        <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 " />
-        <a href="">Twitter</a>
-      </li>
-      <li>
-        <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 text-[#697c9a]" />
-        <a href="">@github</a>
-      </li>
-    </ul>
+      <div class="flex flex-col md:flex-row">
+          <ul class="w-full md:w-1/2 ml-5 space-y-2 pb-3">
+              <li>
+                  <.icon name="hero-map-pin-solid" class="ml-1 w-4 h-4 text-[#697c9a]" />
+                  <a href="">Location</a>
+              </li>
+              <li>
+                  <.icon name="hero-link-solid" class="ml-1 w-4 h-4 text-[#697c9a]" />
+                  <a href="">Link</a>
+              </li>
+            </ul>
+          <ul class="w-full md:w-1/2 ml-5 space-y-2 pb-3">
+              <li>
+                  <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 " />
+                  <a href="">Twitter</a>
+              </li>
+              <li>
+                  <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 text-[#697c9a]" />
+                  <a href="">@github</a>
+              </li>
+          </ul>
+      </div>
   </div>
 </section>
 </div>
