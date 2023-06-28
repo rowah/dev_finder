@@ -1,0 +1,78 @@
+<.flash_group flash={@flash} />
+
+<div x-data="{ darkMode: false }" x-init="$watch('darkMode', value => { document.documentElement.classList.toggle('dark', value); })" class="bg-[#f6f8ff] dark:bg-[#141d2f] dark:text-white h-[100vh] font-mono pt-11">
+  <div class="md:w-[550px] lg:w-[35vw] md:ml-[30%]">
+    <div class="flex mx-4 justify-between pt-4">
+      <h1 class="font-bold mt-2 text-xl">devfinder</h1>
+      <div @click="darkMode = !darkMode" class="cursor-pointer">
+        <div x-show="!darkMode" class="flex text-[#697c9a] mt-2">
+          <h4>DARK</h4>
+          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
+        </div>
+        <div x-show="darkMode" class="flex text-white mt-2">
+          <h4>LIGHT</h4>
+          <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
+        </div>
+      </div>
+    </div>
+    <form class="mx-4 mt-5 shadow-lg rounded-lg">   
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+        <div class="relative">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-[#0079ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#0079ff]" placeholder="Search GitHub username..." required>
+            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#0079ff] hover:bg-[#0079ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-[#0079ff] dark:focus:ring-blue-800">Search</button>
+        </div>
+    </form>
+    <section class="bg-[#ffffff] mx-4 mt-3 rounded-lg shadow-lg space-y-5 dark:bg-[#1e2a47]">
+      <div class="flex mx-3 pt-6">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" class="h-20 rounded-full"/>
+        <div class="ml-6">
+          <h3>The Username</h3>
+          <a href="" class="text-[#0079ff]">@username</a>
+          <span class="block">Date Joined</span>
+        </div>
+      </div>
+      <p class="mx-3">Bio:Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <div class="bg-[#f6f8ff] mx-7 flex text-center justify-between p-6 dark:bg-[#141d2f]">
+        <div class="text-center">
+          <h4 class="dark:text-[#697c9a]">Repos</h4>
+          <span class="font-bold">40</span>
+        </div>
+        <div class="text-center">
+          <h4 class="dark:text-[#697c9a]">Followers</h4>
+          <span class="font-bold">1000</span>
+        </div>
+        <div class="text-center">
+          <h4 class="dark:text-[#697c9a]">Following</h4>
+          <span class="font-bold">1</span>
+        </div>
+      </div>
+      <div>
+          <div class="flex flex-col md:flex-row">
+              <ul class="w-full md:w-1/2 ml-5 space-y-2 pb-3">
+                  <li>
+                      <.icon name="hero-map-pin-solid" class="ml-1 w-4 h-4 text-[#697c9a] dark:text-white" />
+                      <a href="">Location</a>
+                  </li>
+                  <li>
+                      <.icon name="hero-link-solid" class="ml-1 w-4 h-4 text-[#697c9a] dark:text-white" />
+                      <a href="">Link</a>
+                  </li>
+                </ul>
+              <ul class="w-full md:w-1/2 ml-5 space-y-2 pb-3">
+                  <li class="flex">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-1 text-[#697c9a] dark:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+                      <a href="" class="ml-1">Twitter</a>
+                  </li>
+                  <li>
+                      <.icon name="hero-building-office-2-solid" class="ml-1 w-4 h-4 text-[#697c9a] dark:text-white" />
+                      <a href="">@github</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </section>
+  </div>
+</div>
