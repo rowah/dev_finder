@@ -4,7 +4,7 @@ The app enables visitors to type in the GitHub username and show the user's prof
 
 [Here](https://devfinder.fly.dev/) is the link to the application.
 
-![Dev svg](https://github.com/rowah/product-expiry-tracker-app/blob/main/public/imgs/track.png)
+![Dev svg](https://github.com/rowah/dev_finder/blob/main/priv/static/favicon.ico)
 
 ## Technology Used
 
