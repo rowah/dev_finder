@@ -1,7 +1,7 @@
-defmodule DevFinderWeb.UserLive do
+defmodule DevFinderWeb.UserLive.Index do
   use DevFinderWeb, :live_view
 
-  def mount(_, _, socket) do
+  def mount(_params, _session, socket) do
     {:ok,
      socket
      |> assign(:user_bio, default_user_bio())}
