@@ -1,10 +1,22 @@
 defmodule DevFinderWeb.UserLive do
   use DevFinderWeb, :live_view
 
-  def mount(_, _, socket) do
+  @impl true
+  def mount(_params, _session, socket) do
     {:ok,
      socket
      |> assign(:user_bio, default_user_bio())}
+  end
+
+  @impl true
+  def handle_event("search", %{"user_bio" => %{"username" => username}}, socket) do
+    IO.inspect(username, label: "[USERNAME]")
+
+    {
+      :noreply,
+      socket
+      |> tap(&IO.inspect(&1.assigns, label: "[SOCKET ASSIGNS]"))
+    }
   end
 
   defp default_user_bio do

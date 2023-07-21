@@ -1,4 +1,4 @@
-<.flash_group flash={@flash} />
+<%!-- <.flash_group flash={@flash} /> --%>
 
 <div x-data="{ darkMode: false }" x-init="$watch('darkMode', value => { document.documentElement.classList.toggle('dark', value); })" class="bg-[#f6f8ff] dark:bg-[#141d2f] dark:text-white h-[100vh] font-mono pt-11">
   <div class="md:w-[550px] lg:w-[35vw] md:ml-[30%]">
@@ -15,16 +15,16 @@
         </div>
       </div>
     </div>
-    <form class="mx-4 mt-5 shadow-lg rounded-lg">   
+      <form phx-submit="search" id="search-form" class="mx-4 mt-5 shadow-lg rounded-lg">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
         <div class="relative">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg class="w-5 h-5 text-gray-500 dark:text-[#0079ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </div>
-            <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#0079ff]" placeholder="Search GitHub username..." required>
-            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#0079ff] hover:bg-[#0079ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-[#0079ff] dark:focus:ring-blue-800">Search</button>
+          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500 dark:text-[#0079ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <input type="search" id="default-search" name="user_bio[username]" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#0079ff]" placeholder="Search GitHub username..." required >
+          <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-[#0079ff] hover:bg-[#0079ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-[#0079ff] dark:focus:ring-blue-800">Search</button>
         </div>
-    </form>
+      </form>
     <section class="bg-[#ffffff] mx-4 mt-3 rounded-lg shadow-lg space-y-5 dark:bg-[#1e2a47]">
       <div class="flex mx-3 pt-6">
         <img src={@user_bio.avatar_url} alt="" class="h-20 rounded-full"/>
