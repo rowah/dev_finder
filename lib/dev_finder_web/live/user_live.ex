@@ -1,6 +1,8 @@
 defmodule DevFinderWeb.UserLive do
   use DevFinderWeb, :live_view
 
+  require Logger
+
   @impl true
   def mount(_params, _session, socket) do
     {:ok,
@@ -12,10 +14,26 @@ defmodule DevFinderWeb.UserLive do
   def handle_event("search", %{"user_bio" => %{"username" => username}}, socket) do
     IO.inspect(username, label: "[USERNAME]")
 
+    case fetch_github_user(username) do
+      {:ok, user_bio} ->
+        {:nonreply, assign(socket, %{socket | user_bio: user_bio})}
+
+      {:error, message} ->
+        IO.inspect(message, label: "Error Message")
+
+        {
+          :noreply,
+          assign(
+            socket,
+            %{socket | user_bio: default_user_bio()}
+            |> tap(&IO.inspect(&1.assigns, label: "[SOCKET ASSIGNS]"))
+          )
+        }
+    end
+
     {
       :noreply,
       socket
-      |> tap(&IO.inspect(&1.assigns, label: "[SOCKET ASSIGNS]"))
     }
   end
 
