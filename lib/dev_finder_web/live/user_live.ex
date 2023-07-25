@@ -1,32 +1,31 @@
 defmodule DevFinderWeb.UserLive do
   use DevFinderWeb, :live_view
 
+  import DevFinder.GithubApi
+
   require Logger
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:user_bio, default_user_bio())}
+    {:ok, assign(socket, :user_bio, default_user_profile())}
   end
 
   @impl true
-  def handle_event("search", %{"user_bio" => %{"username" => username}}, socket) do
-    IO.inspect(username, label: "[USERNAME]")
+  def handle_event("search", %{"user_bio" => %{"username" => username}} = params, socket) do
+    Logger.info("USERNAME: #{username}")
 
     case fetch_github_user(username) do
-      {:ok, user_bio} ->
-        {:nonreply, assign(socket, %{socket | user_bio: user_bio})}
+      {:ok, profile} ->
+        {:nonreply, assign(socket, %{socket | user_bio: profile})}
 
       {:error, message} ->
-        IO.inspect(message, label: "Error Message")
+        Logger.info("ERRORMESSSAGE: #{message}")
 
         {
           :noreply,
           assign(
             socket,
-            %{socket | user_bio: default_user_bio()}
-            |> tap(&IO.inspect(&1.assigns, label: "[SOCKET ASSIGNS]"))
+            %{socket | user_bio: default_user_profile()}
           )
         }
     end
@@ -37,7 +36,9 @@ defmodule DevFinderWeb.UserLive do
     }
   end
 
-  defp default_user_bio do
+  defp default_user_profile do
+    Logger.info("default user bio loaded")
+
     %{
       full_name: "James Rowa",
       avatar_url:
