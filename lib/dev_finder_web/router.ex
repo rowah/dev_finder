@@ -18,7 +18,7 @@ defmodule DevFinderWeb.Router do
     pipe_through :browser
 
     # get "/", PageController, :home
-    live "/", UserLive
+    live "/", UserLive.Index
   end
 
   # Other scopes may use custom stacks.

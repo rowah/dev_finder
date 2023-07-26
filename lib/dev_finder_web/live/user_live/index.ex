@@ -1,4 +1,4 @@
-defmodule DevFinderWeb.UserLive do
+defmodule DevFinderWeb.UserLive.Index do
   use DevFinderWeb, :live_view
 
   import DevFinder.GithubApi
