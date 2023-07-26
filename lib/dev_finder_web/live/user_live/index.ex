@@ -1,13 +1,45 @@
 defmodule DevFinderWeb.UserLive.Index do
   use DevFinderWeb, :live_view
 
+  import DevFinder.GithubApi
+
+  require Logger
+
+  @impl true
   def mount(_params, _session, socket) do
-    {:ok,
-     socket
-     |> assign(:user_bio, default_user_bio())}
+    {:ok, assign(socket, :user_profile, default_user_profile())}
   end
 
-  defp default_user_bio do
+  @impl true
+  def handle_event("search", %{"user_profile" => %{"username" => username}} = _params, socket) do
+    Logger.info("USERNAME: #{username}")
+
+    case fetch_github_user(username) do
+      {:ok, user_profile} ->
+        {:noreply, socket |> assign(:user_profile, user_profile)}
+
+      {:error, _reason} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "Unexpected error. Please try again.")
+         |> assign(:user_profile, default_user_profile())}
+
+      {:not_found, _reason} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Sorry. That user does not exist.")
+         |> assign(:user_profile, default_user_profile())}
+    end
+
+    {
+      :noreply,
+      socket
+    }
+  end
+
+  defp default_user_profile do
+    Logger.info("default user bio loaded")
+
     %{
       full_name: "James Rowa",
       avatar_url:
