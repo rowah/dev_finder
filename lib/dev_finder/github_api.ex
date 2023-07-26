@@ -7,8 +7,8 @@ defmodule DevFinder.GithubApi do
     url = "#{@base_url}/users/#{username}"
 
     case HTTPoison.get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        case Jason.decode(body) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: profile}} ->
+        case Jason.decode(profile) do
           {:ok, profile} -> {:ok, profile}
           {:error, reason} -> {:error, "JSON parsing error: #{reason}"}
         end

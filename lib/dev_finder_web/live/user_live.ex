@@ -7,27 +7,28 @@ defmodule DevFinderWeb.UserLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :user_bio, default_user_profile())}
+    {:ok, assign(socket, :user_profile, default_user_profile())}
   end
 
   @impl true
-  def handle_event("search", %{"user_bio" => %{"username" => username}} = params, socket) do
+  def handle_event("search", %{"user_profile" => %{"username" => username}} = _params, socket) do
     Logger.info("USERNAME: #{username}")
 
     case fetch_github_user(username) do
-      {:ok, profile} ->
-        {:nonreply, assign(socket, %{socket | user_bio: profile})}
+      {:ok, user_profile} ->
+        {:noreply, socket |> assign(:user_profile, user_profile)}
 
-      {:error, message} ->
-        Logger.info("ERRORMESSSAGE: #{message}")
+      {:error, _reason} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "Unexpected error. Please try again.")
+         |> assign(:user_profile, default_user_profile())}
 
-        {
-          :noreply,
-          assign(
-            socket,
-            %{socket | user_bio: default_user_profile()}
-          )
-        }
+      {:not_found, _reason} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Sorry. That user does not exist.")
+         |> assign(:user_profile, default_user_profile())}
     end
 
     {
