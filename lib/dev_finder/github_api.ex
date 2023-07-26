@@ -1,5 +1,5 @@
 defmodule DevFinder.GithubApi do
-  # require Logger
+  require Logger
 
   @base_url "https://api.github.com"
 
@@ -9,8 +9,13 @@ defmodule DevFinder.GithubApi do
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: profile}} ->
         case Jason.decode(profile) do
-          {:ok, profile} -> {:ok, profile}
-          {:error, reason} -> {:error, "JSON parsing error: #{reason}"}
+          {:ok, profile} ->
+            Logger.info("profile: #{profile}")
+            {:ok, profile}
+
+          {:error, reason} ->
+            Logger.info("error1: #{reason}")
+            {:error, "JSON parsing error: #{reason}"}
         end
 
       {:ok, %HTTPoison.Response{status_code: code}} ->
