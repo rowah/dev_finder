@@ -13,6 +13,7 @@ defmodule DevFinderWeb.UserLive.Index do
   @impl true
   def handle_event("search", %{"user_profile" => %{"username" => username}} = _params, socket) do
     Logger.info("USERNAME: #{username}")
+    dbg()
 
     case fetch_github_user(username) do
       {:ok, user_profile} ->
@@ -24,11 +25,11 @@ defmodule DevFinderWeb.UserLive.Index do
          |> put_flash(:error, "Unexpected error. Please try again.")
          |> assign(:user_profile, default_user_profile())}
 
-      {:not_found, _reason} ->
-        {:noreply,
-         socket
-         |> put_flash(:info, "Sorry. That user does not exist.")
-         |> assign(:user_profile, default_user_profile())}
+        # {:not_found, _reason} ->
+        #   {:noreply,
+        #    socket
+        #    |> put_flash(:info, "Sorry. That user does not exist.")
+        #    |> assign(:user_profile, default_user_profile())}
     end
 
     # {
@@ -37,7 +38,6 @@ defmodule DevFinderWeb.UserLive.Index do
     # }
   end
 
-  @impl true
   defp default_user_profile do
     Logger.info("default user bio loaded")
 
