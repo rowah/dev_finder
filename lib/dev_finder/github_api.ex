@@ -13,10 +13,10 @@ defmodule DevFinder.GithubApi do
         {:ok, user_profile}
         Logger.info("profile: #{user_profile}", ansi_color: :magenta)
 
-        case Jason.decode(user_profile) do
+        case Jason.decode(user_profile, keys: :atoms) do
           {:ok, user_profile} ->
             dbg()
-            Logger.info("user_profile: #{user_profile}", ansi_color: :magenta)
+            Logger.info("user_profile: #{inspect(user_profile)}", ansi_color: :magenta)
             IO.inspect(user_profile, label: "[DECODED PROFILE]")
             {:ok, user_profile}
 
