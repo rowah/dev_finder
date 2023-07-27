@@ -30,22 +30,18 @@ defmodule DevFinderWeb.UserLive.Index do
          |> put_flash(:info, "Sorry. That user does not exist.")
          |> assign(:user_profile, default_user_profile())}
     end
-
-    {
-      :noreply,
-      socket
-    }
   end
 
+  @impl true
   defp default_user_profile do
     Logger.info("default user bio loaded")
 
     %{
-      full_name: "James Rowa",
+      name: "James Rowa",
       avatar_url:
         "https://avatars.githubusercontent.com/u/76947107?s=400&u=cd0be7843d2c30ae6f985634ac9966b11242aacb&v=4",
       username: "rowah",
-      profile_url: "https://github.com/rowah",
+      html_url: "https://github.com/rowah",
       bio:
         "Community-taught software developer, Biochemistry and teaching are my other professions. I am currently learning Elixir.",
       location: "Nairobi, Kenya",
@@ -53,11 +49,9 @@ defmodule DevFinderWeb.UserLive.Index do
       company: "Expivot",
       blog: "https://jrowah.com",
       created_at: "4 Jan 2021",
-      profile_stats: %{
-        public_repos: "44",
-        followers: "17",
-        following: "8"
-      }
+      public_repos: 43,
+      followers: 17,
+      following: 8
     }
   end
 end

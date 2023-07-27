@@ -7,11 +7,18 @@ defmodule DevFinder.GithubApi do
     url = "#{@base_url}/users/#{username}"
 
     case HTTPoison.get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: profile}} ->
-        case Jason.decode(profile) do
-          {:ok, profile} ->
-            Logger.info("profile: #{profile}")
-            {:ok, profile}
+      {:ok, %HTTPoison.Response{status_code: 200, body: user_profile}} ->
+        # Logs http responses. Response successful for valid users as user being logged here
+        Logger.info("HTTPprofile: #{user_profile}", ansi_color: :blue)
+        {:ok, user_profile}
+        Logger.info("profile: #{user_profile}", ansi_color: :magenta)
+
+        case Jason.decode(user_profile) do
+          {:ok, user_profile} ->
+            dbg()
+            Logger.info("user_profile: #{user_profile}", ansi_color: :magenta)
+            IO.inspect(user_profile, label: "[DECODED PROFILE]")
+            {:ok, user_profile}
 
           {:error, reason} ->
             Logger.info("error1: #{reason}")

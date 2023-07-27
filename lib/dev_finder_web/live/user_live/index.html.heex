@@ -29,7 +29,7 @@
       <div class="flex mx-3 pt-6">
         <img src={@user_profile.avatar_url} alt="" class="h-20 rounded-full"/>
         <div class="ml-6">
-          <h3><%= @user_profile.full_name%></h3>
+          <h3><%= @user_profile.name%></h3>
           <a href="" class="text-[#0079ff]"><%= @user_profile.username%></a>
           <span class="block"><%=@user_profile.created_at%></span>
         </div>
@@ -38,15 +38,15 @@
       <div class="bg-[#f6f8ff] mx-7 flex text-center justify-between p-6 dark:bg-[#141d2f]">
         <div class="text-center">
           <h4 class="dark:text-[#697c9a]">Repos</h4>
-          <span class="font-bold"><%=@user_profile.profile_stats[:public_repos]%></span>
+          <span class="font-bold"><%=@user_profile.public_repos%></span>
         </div>
         <div class="text-center">
           <h4 class="dark:text-[#697c9a]">Followers</h4>
-          <span class="font-bold"><%=@user_profile.profile_stats[:followers]%></span>
+          <span class="font-bold"><%=@user_profile.followers%></span>
         </div>
         <div class="text-center">
           <h4 class="dark:text-[#697c9a]">Following</h4>
-          <span class="font-bold"><%=@user_profile.profile_stats[:following]%></span>
+          <span class="font-bold"><%=@user_profile.following%></span>
         </div>
       </div>
       <div>
