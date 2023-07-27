@@ -30,6 +30,11 @@ defmodule DevFinderWeb.UserLive.Index do
          |> put_flash(:info, "Sorry. That user does not exist.")
          |> assign(:user_profile, default_user_profile())}
     end
+
+    # {
+    #   :noreply,
+    #   socket
+    # }
   end
 
   @impl true
