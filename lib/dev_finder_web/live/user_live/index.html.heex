@@ -63,7 +63,7 @@
                       <a class="hover:underline" href={@user_profile.blog}><%=@user_profile.blog%></a>
                       <% end %>
                       <%= if @user_profile.blog == "" do %>
-                      <p class="ml-7 mt-[-22px]">Blog Unavailable</p>
+                      <p class="ml-7 mt-[-22px]">No Blog</p>
                       <% end %>
                   </li>
                   
@@ -75,8 +75,8 @@
                       <%= if @user_profile.twitter_username !== "" do %>
                       <a href="https://twitter.com/" class="ml-1"><%= @user_profile.twitter_username %></a>
                       <% end %>
-                      <%= if @user_profile.twitter_username === "" do %>
-                      <p class="ml-2">Twitter Unavailable</p>
+                      <%= if @user_profile.twitter_username == nil do %>
+                      <p class="ml-2">No Handle</p>
                       <% end %>
                   </li>
                   
