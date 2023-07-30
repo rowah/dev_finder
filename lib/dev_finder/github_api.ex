@@ -1,5 +1,6 @@
 defmodule DevFinder.GithubApi do
   require Logger
+  require Timex
 
   @base_url "https://api.github.com"
 
@@ -18,7 +19,8 @@ defmodule DevFinder.GithubApi do
             user_profile =
               data
               |> Map.put(:username, data[:login])
-              |> Map.delete(:login)
+              # |> Map.delete(:login)
+              |> Map.put(:created_at, format_date(data[:created_at]))
 
             # dbg()
             Logger.info("user_profile: #{inspect(user_profile)}", ansi_color: :magenta)
@@ -36,5 +38,11 @@ defmodule DevFinder.GithubApi do
       {:error, reason} ->
         {:error, "HTTP request error: #{reason}"}
     end
+  end
+
+  defp format_date(date) do
+    {:ok, date} = Timex.parse(date, "{ISO:Extended}")
+    {:ok, formatted_date} = Timex.format(date, "{D} {M} {YYYY}")
+    formatted_date
   end
 end
