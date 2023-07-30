@@ -53,7 +53,7 @@ defmodule DevFinderWeb.UserLive.Index do
       twitter_username: "@Jrowah",
       company: "Expivot",
       blog: "https://jrowah.com",
-      created_at: "4 Jan 2021",
+      created_at: "4 Feb 2021",
       public_repos: 43,
       followers: 17,
       following: 8

@@ -3,6 +3,7 @@ defmodule DevFinder.GithubApi do
   require Timex
 
   @base_url "https://api.github.com"
+  @months ~w(Jan Feb Mar Apr May Jun Jul Aug Sept Oct Nov Dec)a
 
   def fetch_github_user(username) do
     url = "#{@base_url}/users/#{username}"
@@ -43,6 +44,11 @@ defmodule DevFinder.GithubApi do
   defp format_date(date) do
     {:ok, date} = Timex.parse(date, "{ISO:Extended}")
     {:ok, formatted_date} = Timex.format(date, "{D} {M} {YYYY}")
+    [day, month, year] = String.split(formatted_date, " ") |> Enum.map(&String.to_integer/1)
+
+    month_name = @months |> Enum.at(month)
+
+    formatted_date = "#{day} #{month_name} #{year}"
     formatted_date
   end
 end
