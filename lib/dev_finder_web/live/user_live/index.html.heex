@@ -1,7 +1,7 @@
 <%!-- <.flash_group flash={@flash} /> --%>
 
 <div x-data="{ darkMode: false }" x-init="$watch('darkMode', value => { document.documentElement.classList.toggle('dark', value); })" class="bg-[#f6f8ff] dark:bg-[#141d2f] dark:text-white font-mono pt-11 h-[100vh]">
-  <div class="md:w-[650px] lg:w-[50vw] md:ml-[15%] pb-11">
+  <div class="md:w-[650px] lg:w-[50vw] md:ml-[8%] lg:ml-[15%] pb-11">
     <div class="flex mx-4 justify-between pt-4">
       <h1 class="font-bold mt-2 text-xl">devfinder</h1>
       <div @click="darkMode = !darkMode" class="cursor-pointer">
@@ -28,12 +28,12 @@
     <section class="bg-[#ffffff] mx-4 mt-3 rounded-lg shadow-lg space-y-5 dark:bg-[#1e2a47]">
       <div class="flex mx-3 pt-6">
         <img src={@user_profile.avatar_url} alt="" class="h-20 rounded-full"/>
-        <div class="md:flex ml-6">
-          <div>
+        <div class="lg:flex ml-6">
+          <div class="lg:mr-[120px]">
           <h3><%= @user_profile.name%></h3>
           <a href="" class="text-[#0079ff]"><%= @user_profile.username%></a>
           </div>
-          <span class="block md:ml-[100px] lg:ml-[200px]">Joined <%=@user_profile.created_at%></span>
+          <h3 class="">Joined <%=@user_profile.created_at%></h3>
         </div>
       </div>
       <div class="lg:ml-[110px]">
