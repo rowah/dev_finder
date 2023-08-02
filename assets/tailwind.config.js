@@ -12,6 +12,16 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
+        lightMode: {
+          primary: "#f6f8ff", // Primary color for light mode
+          secondary: "#f0f0f0", // Secondary color for day mode
+          // Add more day mode colors here
+        },
+        darkMode: {
+          primary: "#141d2f", // Primary color for dark mode
+          secondary: "#2d3748", // Secondary color for dark mode
+          // Add more night mode colors here
+        },
       },
       fontFamily: {
         mono: ["Space Mono", "monospace"],
