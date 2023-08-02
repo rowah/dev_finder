@@ -1,18 +1,29 @@
 <%!-- <.flash_group flash={@flash} /> --%>
 
-<div x-data="{ darkMode: false }" x-init="$watch('darkMode', value => { document.documentElement.classList.toggle('dark', value); })" class="bg-[#f6f8ff] dark:bg-[#141d2f] dark:text-white font-mono pt-11 h-[100vh]">
+<div data-theme=<%= @theme %> class="bg-[#f6f8ff] dark:bg-[#141d2f] dark:text-white font-mono pt-11 h-[100vh]">
   <div class="md:w-[650px] lg:w-[50vw] md:ml-[8%] lg:ml-[15%] pb-11">
     <div class="flex mx-4 justify-between pt-4">
       <h1 class="font-bold mt-2 text-xl">devfinder</h1>
-      <div @click="darkMode = !darkMode" class="cursor-pointer">
-        <div x-show="!darkMode" class="flex text-[#697c9a] mt-2">
-          <h4>DARK</h4>
-          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
-        </div>
-        <div x-show="darkMode" class="flex text-white mt-2">
+      <div class="cursor-pointer icons">
+      <% if @theme == "lightMode" do %>
+      <div class="text-white mt-2">
           <h4>LIGHT</h4>
           <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
         </div>
+        <div class="text-[#697c9a] mt-2 hidden">
+          <h4>DARK</h4>
+          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
+        </div>
+        <% else %>
+        <div class="text-white mt-2 hidden">
+          <h4>LIGHT</h4>
+          <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
+        </div>
+        <div class="text-[#697c9a] mt-2 hidden">
+          <h4>DARK</h4>
+          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
+        </div>
+        <% end %>
       </div>
     </div>
       <form phx-submit="search" id="search-form" class="mx-4 mt-5 shadow-lg rounded-lg">
