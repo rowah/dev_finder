@@ -5,7 +5,7 @@ defmodule DevFinderWeb.UserLive.Index do
 
   require Logger
 
-  @theme "dayMode"
+  @theme "lightMode"
 
   @impl true
   def mount(_params, _session, socket) do
