@@ -5,9 +5,11 @@ defmodule DevFinderWeb.UserLive.Index do
 
   require Logger
 
+  @theme "dayMode"
+
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :user_profile, default_user_profile())}
+    {:ok, assign(socket, %{user_profile: default_user_profile(), theme: @theme})}
   end
 
   @impl true
@@ -31,11 +33,12 @@ defmodule DevFinderWeb.UserLive.Index do
         #    |> put_flash(:info, "Sorry. That user does not exist.")
         #    |> assign(:user_profile, default_user_profile())}
     end
+  end
 
-    # {
-    #   :noreply,
-    #   socket
-    # }
+  @impl true
+  def handle_event("update_theme", %{"theme" => theme}, socket) do
+    # Handle update_theme event
+    {:noreply, assign(socket, theme: theme)}
   end
 
   defp default_user_profile do

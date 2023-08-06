@@ -27,11 +27,11 @@ let Hooks = {};
 Hooks.ThemeSwitcher = {
   mounted() {
     //ensure correct div is shown when the LiveView is initially mounted
-    this.HandleThemeChange;
+    this.HandleThemeChange();
   },
 
   HandleThemeChange() {
-    const savedTheme = localStorage.getTheme("theme");
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       this.setTheme(savedTheme);
     } else {
@@ -42,6 +42,7 @@ Hooks.ThemeSwitcher = {
   setTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    this.pushEvent("update_theme", { theme: theme }); // Send the theme to LiveView
   },
 
   updateDivVisibility(theme) {
