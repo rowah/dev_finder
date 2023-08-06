@@ -5,25 +5,25 @@
     <div class="flex mx-4 justify-between pt-4">
       <h1 class="font-bold mt-2 text-xl">devfinder</h1>
       <div class="cursor-pointer icons">
-      <%= if @theme == "lightMode" do %>
-      <div class="text-white mt-2 light-div">
-          <h4>LIGHT</h4>
-          <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
-        </div>
-        <div class="text-[#697c9a] mt-2 hidden dark-div">
-          <h4>DARK</h4>
-          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
-        </div>
-        <% else %>
-        <div class="text-white mt-2 light-div hidden">
-          <h4>LIGHT</h4>
-          <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
-        </div>
-        <div class="text-[#697c9a] mt-2 dark-div hidden">
-          <h4>DARK</h4>
-          <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
-        </div>
-        <% end %>
+          <%= if @theme == "lightMode" do %>
+            <div class="text-white mt-2 light-div hidden">
+                  <h4>LIGHT</h4>
+                  <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
+            </div>
+            <div class="text-[#697c9a] mt-2 dark-div">
+                  <h4>DARK</h4>
+                  <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
+            </div>
+            <% else %>
+            <div class="text-white mt-2 light-div">
+              <h4>LIGHT</h4>
+              <.icon name="hero-sun-solid" class="ml-1 w-6 h-6" />
+            </div>
+            <div class="text-[#697c9a] mt-2 dark-div hidden">
+              <h4>DARK</h4>
+              <.icon name="hero-moon-solid" class="ml-1 w-5 h-5" />
+            </div>
+          <% end %>
       </div>
     </div>
       <form phx-submit="search" id="search-form" class="mx-4 mt-5 shadow-lg rounded-lg">
