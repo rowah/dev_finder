@@ -41,7 +41,7 @@ defmodule DevFinderWeb.UserLive.Index do
   defp default_user_profile do
     Logger.info("default user bio loaded")
 
-    %{
+    %DevFinder.DevStruct{
       name: "James Rowa",
       avatar_url:
         "https://avatars.githubusercontent.com/u/76947107?s=400&u=cd0be7843d2c30ae6f985634ac9966b11242aacb&v=4",
